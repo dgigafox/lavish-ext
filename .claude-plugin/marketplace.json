@@ -1,0 +1,16 @@
+{
+  "name": "lavish-ext",
+  "owner": {
+    "name": "Darren Gegantino"
+  },
+  "metadata": {
+    "description": "Lavish extension: skills that build on lavish-axi review pages."
+  },
+  "plugins": [
+    {
+      "name": "lavish-ext",
+      "source": "./",
+      "description": "Lavish extension: a step-by-step, plain-words walkthrough of how a PR was written, as a lavish page you can annotate."
+    }
+  ]
+}

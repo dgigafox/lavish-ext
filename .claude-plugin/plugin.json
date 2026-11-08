@@ -1,0 +1,9 @@
+{
+  "name": "lavish-ext",
+  "version": "0.1.0",
+  "description": "Lavish extension: skills that build on the lavish skill and lavish-axi to turn agent work into reviewable HTML pages. /lavish-ext:code-walkthrough explains how a PR or branch was written, step by step, in plain words.",
+  "author": {
+    "name": "Darren Gegantino"
+  },
+  "keywords": ["lavish", "walkthrough", "pull-request", "knowledge-sync", "html"]
+}

@@ -1,0 +1,142 @@
+<!doctype html>
+<!--
+  Skeleton for a code walkthrough page. Replace the tokens in :root with the
+  project's own colours and font when it has them; otherwise swap this style
+  block for lavish's Tailwind + DaisyUI CDN snippet (`npx -y lavish-axi design`).
+  Keep: the sidebar, one visible section at a time, Previous/Next, the
+  <script type="text/plain" class="code"> blocks, and the renderer at the end.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Walkthrough: TITLE</title>
+  <style>
+    :root {
+      --bg: #ffffff; --surface: #f6f7f9; --text: #1f2328; --muted: #59636e;
+      --border: #d1d9e0; --accent: #0969da; --accent-text: #ffffff;
+      --font: system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d1117; --surface: #161b22; --text: #e6edf3; --muted: #9198a1;
+        --border: #3d444d; --accent: #4493f8; --accent-text: #0d1117;
+      }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 var(--font); }
+    .layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); min-height: 100vh; }
+    nav { background: var(--surface); border-right: 1px solid var(--border); padding: 16px; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+    nav h1 { font-size: 15px; margin: 0 0 12px; }
+    nav a { display: block; padding: 6px 10px; border-radius: 6px; color: var(--text); text-decoration: none; font-size: 14px; }
+    nav a[aria-current="page"] { background: var(--accent); color: var(--accent-text); }
+    main { padding: 32px; max-width: 920px; min-width: 0; }
+    section { display: none; }
+    section.active { display: block; }
+    h2 { margin-top: 0; }
+    h3 { margin-top: 28px; font-size: 17px; }
+    .file-label { font: 13px ui-monospace, monospace; color: var(--muted); margin: 16px 0 4px; overflow-wrap: anywhere; }
+    .code-view { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 40px; }
+    .pager button { padding: 8px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; cursor: pointer; }
+    .pager button:disabled { opacity: .4; cursor: default; }
+    @media (max-width: 760px) {
+      .layout { grid-template-columns: minmax(0, 1fr); }
+      nav { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--border); }
+      main { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <nav aria-label="Walkthrough">
+    <h1>TITLE</h1>
+    <a href="#overview">Overview</a>
+    <a href="#step-1">1. STEP TITLE</a>
+    <a href="#gaps">Gaps and known limits</a>
+  </nav>
+
+  <main>
+    <section id="overview">
+      <h2>Overview</h2>
+      <h3>The problem</h3>
+      <p>A concrete story with a named person. Define each domain term here.</p>
+      <h3>The proposed solution</h3>
+      <p>Plain words, a few short paragraphs.</p>
+      <h3>The steps</h3>
+      <ol><li><a href="#step-1">STEP TITLE</a>: one line.</li></ol>
+    </section>
+
+    <section id="step-1">
+      <h2>Step 1. STEP TITLE</h2>
+      <h3>What changed</h3>
+      <p>Two to five plain sentences.</p>
+      <h3>The code</h3>
+      <p class="file-label">path/to/file.ext: why to look at it</p>
+      <!-- Copy the lines from the current file. Never write them from memory. -->
+      <script type="text/plain" class="code" data-name="path/to/file.ext">
+COPIED CODE HERE
+</script>
+      <h3>Why</h3>
+      <p>The reason, and why not the obvious simpler thing.</p>
+      <h3>Tests</h3>
+      <ul><li>test name: what it checks.</li></ul>
+    </section>
+
+    <section id="gaps">
+      <h2>Gaps and known limits</h2>
+      <ul><li>What is not done yet, and the ticket that covers it.</li></ul>
+    </section>
+
+    <div class="pager">
+      <button type="button" id="prev">Previous</button>
+      <button type="button" id="next">Next</button>
+    </div>
+  </main>
+</div>
+
+<script>
+  // One section visible at a time, driven by the URL hash.
+  const sections = [...document.querySelectorAll("main section")];
+  const links = [...document.querySelectorAll("nav a")];
+  function show(id) {
+    const index = Math.max(0, sections.findIndex((s) => s.id === id));
+    sections.forEach((s, i) => s.classList.toggle("active", i === index));
+    links.forEach((a) => {
+      if (a.hash === "#" + sections[index].id) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+    document.getElementById("prev").disabled = index === 0;
+    document.getElementById("next").disabled = index === sections.length - 1;
+    window.scrollTo(0, 0);
+    return index;
+  }
+  let current = show(location.hash.slice(1));
+  window.addEventListener("hashchange", () => { current = show(location.hash.slice(1)); });
+  document.getElementById("prev").onclick = () => { location.hash = sections[current - 1].id; };
+  document.getElementById("next").onclick = () => { location.hash = sections[current + 1].id; };
+</script>
+
+<script type="module">
+  // Render each <script type="text/plain" class="code"> block with @pierre/diffs,
+  // per the lavish `code` playbook. The file name sets the language.
+  import { File } from "https://esm.sh/@pierre/diffs@1.2.10?bundle";
+  const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const options = {
+    theme: { light: "github-light", dark: "github-dark" },
+    themeType: dark ? "dark" : "light",
+    overflow: "wrap",
+  };
+  for (const block of document.querySelectorAll("script.code")) {
+    const container = document.createElement("div");
+    container.className = "code-view";
+    block.after(container);
+    const contents = block.textContent.replace(/^\n/, "");
+    new File(options).render({
+      containerWrapper: container,
+      file: { name: block.dataset.name, contents },
+    });
+  }
+</script>
+</body>
+</html>
