@@ -134,14 +134,56 @@ the lavish `code` playbook says.
 
 | Section | Content |
 | --- | --- |
-| **Overview** | The ticket in one plain sentence: what is wrong or missing, and what the ticket changes. Then badges: type, priority, status, assignee, parent. |
+| **Overview** | The whole ticket, understandable on its own, with no other section read. See "The Overview" below. |
 | **Terms** | Each domain term the reader needs, one card each, in plain words, from the glossary. Put any feature flag or switch that changes the risk here too. |
 | **Why it exists** | The chain that created the ticket, as a timeline: epic, investigation, result, this ticket. Name each ticket key and what it decided. |
-| **The problem** | A concrete story ("Company A's key asks for Company B's application and gets it"). One inline SVG figure for the flow, per the `diagram` playbook. An everyday analogy. Then the cause in code terms, with file references. |
+| **The problem** | Pick up the Overview's first example; do not retell it. Never write a story as one dense paragraph; use the format from "Formats for stories" below. One inline SVG figure for the flow, per the `diagram` playbook. An everyday analogy. Then the cause in code terms, with file references. |
 | **The fix** | What the ticket proposes, and why this way and not the obvious simpler way. Show code only when it helps. Label proposed code as a sketch. Show an existing precedent in the codebase when the fix copies one. |
 | **Done when** | The acceptance criteria as a checklist, in plain words. |
 | **Status** | A table: is the fix on the default branch, PR state, due date, the worktree or branch, and each open question from step 3. |
 | **Next** | The files to read first, and related tickets with one line each. Do not end with a summary that repeats the page. |
+
+### The Overview
+
+Many readers stop at the Overview. It must explain the ticket plainly every
+time, even when the ticket itself is written in jargon. In this order:
+
+1. **Badges**: type, priority, status, assignee, parent.
+2. **One lead sentence** about what someone sees go wrong (or what is
+   missing), and that this ticket stops it. Say it in the user's or
+   business's terms, not the code's. "A Company can lose its paid features
+   even after it paid," not "Out-of-order `invoice.*` webhooks regress
+   `subscription_status`."
+3. **Example situations**: one to three short, concrete stories with named
+   parties (Company A, Seafarer B), in the format from "Formats for stories"
+   below. Add a second story when the problem has another shape, for
+   example the same bug in reverse, or a different trigger.
+4. **The fix** in one or two plain sentences. No file names.
+5. **Why it matters now**: is anyone affected today, and when that changes.
+
+Rules for the Overview:
+
+- No code, file paths, function names, or ticket keys other than the parent.
+  Those belong in later sections.
+- Every term outside everyday speech is either replaced with plain words or
+  explained in brackets at first use: "Stripe (our payment provider)".
+- Check the lead with this test: could someone outside engineering repeat it
+  to a colleague? If not, rewrite it.
+
+### Formats for stories
+
+A story or example situation must be easy to follow at a glance. Pick the
+format that fits it best:
+
+- **Numbered list**: the default, for events that happen in order.
+- **Before / after table**: when the point is how one thing differs between
+  two cases, such as today versus after the fix.
+- **Side-by-side cards**: for two or three separate situations, such as the
+  bug and its reverse.
+- **Short dialogue**: when two parties exchange messages, such as our app and
+  Stripe.
+
+Never write a story as one dense paragraph.
 
 Write for someone new to the company:
 

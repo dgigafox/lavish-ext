@@ -93,8 +93,17 @@
         <span class="badge">Status</span><span class="badge">Assignee</span>
         <span class="badge">Parent: KEY</span>
       </div>
-      <p class="lead">The ticket in one plain sentence: what is wrong or missing, and what this ticket changes.</p>
-      <p>One or two sentences on the risk or the context that matters most.</p>
+      <p class="lead">What someone sees go wrong, in plain words, and that this ticket stops it. No code terms.</p>
+      <h3>Example: SHORT NAME OF THE SITUATION</h3>
+      <!-- A numbered list is the default; use a table, cards, or a dialogue when that reads better (see SKILL.md, "Formats for stories"). -->
+      <ol id="ex-1">
+        <li>Company A does something ordinary.</li>
+        <li>Something happens behind the scenes, explained in brackets at first use.</li>
+        <li>What Company A sees go wrong.</li>
+      </ol>
+      <!-- Optional: a second example when the problem has another shape (the reverse case, another trigger). -->
+      <p id="ov-fix"><b>The fix:</b> one or two plain sentences. No file names.</p>
+      <p id="ov-now"><b>Why it matters now:</b> who is affected today, and when that changes.</p>
     </section>
 
     <section id="terms">
@@ -117,7 +126,14 @@
 
     <section id="problem">
       <h2>What goes wrong</h2>
-      <p>A concrete story with named parties.</p>
+      <p>Continue the Overview's first example.</p>
+      <!-- A numbered list is the default; use a table, cards, or a dialogue when that reads better (see SKILL.md, "Formats for stories"). -->
+
+      <ol id="problem-story">
+        <li>Company A does something ordinary.</li>
+        <li>What happens next, behind the scenes.</li>
+        <li>What goes wrong, and who sees it.</li>
+      </ol>
       <figure id="fig-problem">
         <!-- Inline SVG per the lavish diagram playbook: viewBox, currentColor, a <title> per node. -->
         <svg viewBox="0 0 760 240" role="img" aria-labelledby="fig-problem-title"><title id="fig-problem-title">FIGURE TITLE</title></svg>
