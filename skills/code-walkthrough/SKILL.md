@@ -15,11 +15,11 @@ This skill only works with the `lavish` skill and `lavish-axi`. Before you read
 any code or write any file, run:
 
 ```bash
-bash "${CLAUDE_PLUGIN_ROOT}/skills/code-walkthrough/scripts/require-lavish.sh"
+bash "${CLAUDE_PLUGIN_ROOT}/scripts/require-lavish.sh"
 ```
 
-If `CLAUDE_PLUGIN_ROOT` is not set, run `scripts/require-lavish.sh` from this
-skill's folder.
+If `CLAUDE_PLUGIN_ROOT` is not set, run `../../scripts/require-lavish.sh` from
+this skill's folder (the plugin root's `scripts/` folder).
 
 - Exit 0: continue.
 - Any other result, or the script cannot run: **stop.** Do not build the page,

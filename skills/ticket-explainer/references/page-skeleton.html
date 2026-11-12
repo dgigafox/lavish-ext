@@ -1,0 +1,215 @@
+<!doctype html>
+<!--
+  Skeleton for a ticket explainer page. Replace the tokens in :root with the
+  project's own colours and font when it has them; otherwise swap this style
+  block for lavish's Tailwind + DaisyUI CDN snippet (`npx -y lavish-axi design`).
+  Keep: the sidebar, one visible section at a time, Previous/Next, the
+  <script type="text/plain" class="code"> blocks, and the renderer at the end.
+  Delete a section's optional parts that the ticket does not need.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KEY explained</title>
+  <style>
+    :root {
+      --bg: #ffffff; --surface: #f6f7f9; --text: #1f2328; --muted: #59636e;
+      --border: #d1d9e0; --accent: #0969da; --accent-text: #ffffff;
+      --warn: #9a6700; --bad: #cf222e; --ok: #1a7f37;
+      --font: system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d1117; --surface: #161b22; --text: #e6edf3; --muted: #9198a1;
+        --border: #3d444d; --accent: #4493f8; --accent-text: #0d1117;
+        --warn: #d29922; --bad: #f85149; --ok: #3fb950;
+      }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 var(--font); }
+    .layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); min-height: 100vh; }
+    nav { background: var(--surface); border-right: 1px solid var(--border); padding: 16px; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+    nav h1 { font-size: 15px; margin: 0 0 12px; overflow-wrap: anywhere; }
+    nav a { display: block; padding: 6px 10px; border-radius: 6px; color: var(--text); text-decoration: none; font-size: 14px; }
+    nav a[aria-current="page"] { background: var(--accent); color: var(--accent-text); }
+    main { padding: 32px; max-width: 920px; min-width: 0; }
+    section { display: none; }
+    section.active { display: block; }
+    h2 { margin-top: 0; }
+    h3 { margin-top: 28px; font-size: 17px; }
+    p, li, td, th { overflow-wrap: anywhere; }
+    code { font: .88em ui-monospace, monospace; background: var(--surface); padding: .05em .35em; border-radius: 4px; }
+    .lead { font-size: 18px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+    .badge { border: 1px solid var(--border); border-radius: 999px; padding: 2px 10px; font-size: 13px; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+    .card { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; background: var(--bg); min-width: 0; }
+    .card h3 { margin: 0 0 4px; font-size: 15px; }
+    .note { border-left: 4px solid var(--accent); background: var(--surface); padding: 10px 14px; border-radius: 4px; }
+    .note.warn { border-color: var(--warn); }
+    .timeline { list-style: none; padding: 0; margin: 0; border-left: 2px solid var(--border); }
+    .timeline li { position: relative; padding: 0 0 16px 18px; }
+    .timeline li::before { content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); }
+    figure { margin: 16px 0; border: 1px solid var(--border); border-radius: 8px; padding: 12px; }
+    figure svg { width: 100%; height: auto; color: var(--text); }
+    figcaption { font-size: 14px; color: var(--muted); }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: var(--surface); width: 30%; }
+    .table-wrap { overflow-x: auto; }
+    .label-sketch { font-size: 13px; color: var(--warn); font-weight: 600; }
+    .file-label { font: 13px ui-monospace, monospace; color: var(--muted); margin: 16px 0 4px; overflow-wrap: anywhere; }
+    .code-view { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 40px; }
+    .pager button { padding: 8px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; cursor: pointer; }
+    .pager button:disabled { opacity: .4; cursor: default; }
+    @media (max-width: 760px) {
+      .layout { grid-template-columns: minmax(0, 1fr); }
+      nav { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--border); }
+      main { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <nav aria-label="Ticket explainer">
+    <h1>KEY: SUMMARY</h1>
+    <a href="#overview">Overview</a>
+    <a href="#terms">Terms</a>
+    <a href="#why">Why it exists</a>
+    <a href="#problem">The problem</a>
+    <a href="#fix">The fix</a>
+    <a href="#done">Done when</a>
+    <a href="#status">Status</a>
+    <a href="#next">Next</a>
+  </nav>
+
+  <main>
+    <section id="overview">
+      <h2>KEY: SUMMARY</h2>
+      <div class="badges">
+        <span class="badge">Type</span><span class="badge">Priority</span>
+        <span class="badge">Status</span><span class="badge">Assignee</span>
+        <span class="badge">Parent: KEY</span>
+      </div>
+      <p class="lead">The ticket in one plain sentence: what is wrong or missing, and what this ticket changes.</p>
+      <p>One or two sentences on the risk or the context that matters most.</p>
+    </section>
+
+    <section id="terms">
+      <h2>The words you need first</h2>
+      <p>One line on the product, then one card for each term, from the glossary.</p>
+      <div class="cards">
+        <div class="card" id="term-TERM"><h3>TERM</h3><p>Plain meaning, in one or two sentences.</p></div>
+      </div>
+      <p class="note">A feature flag or switch that changes the risk, and its current value.</p>
+    </section>
+
+    <section id="why">
+      <h2>Why the ticket exists</h2>
+      <p>One sentence: where the ticket came from.</p>
+      <ol class="timeline">
+        <li id="why-1"><b>KEY: title.</b> What it is and what it decided.</li>
+        <li id="why-2"><b>THIS KEY.</b> Created DATE by PERSON. What it holds.</li>
+      </ol>
+    </section>
+
+    <section id="problem">
+      <h2>What goes wrong</h2>
+      <p>A concrete story with named parties.</p>
+      <figure id="fig-problem">
+        <!-- Inline SVG per the lavish diagram playbook: viewBox, currentColor, a <title> per node. -->
+        <svg viewBox="0 0 760 240" role="img" aria-labelledby="fig-problem-title"><title id="fig-problem-title">FIGURE TITLE</title></svg>
+        <figcaption>One sentence on what the figure shows.</figcaption>
+      </figure>
+      <p class="note"><b>An analogy.</b> An everyday picture of the same failure.</p>
+      <h3>The cause, in code terms</h3>
+      <ol><li>Step by step, with <code>file paths</code>.</li></ol>
+    </section>
+
+    <section id="fix">
+      <h2>The fix</h2>
+      <p>What the ticket proposes, in plain words.</p>
+      <h3>Why this way</h3>
+      <p>The reason, and why not the obvious simpler way.</p>
+      <p class="label-sketch">Sketch, not merged code.</p>
+      <p class="file-label">path/to/file.ext: why to look at it</p>
+      <!-- Copy existing lines from the current file. Label proposed code as a sketch. -->
+      <script type="text/plain" class="code" data-name="path/to/file.ext">
+CODE HERE
+</script>
+    </section>
+
+    <section id="done">
+      <h2>Done when</h2>
+      <ul><li id="ac-1">☐ One acceptance criterion in plain words.</li></ul>
+    </section>
+
+    <section id="status">
+      <h2>Where it stands today</h2>
+      <div class="table-wrap"><table><tbody>
+        <tr id="st-main"><th>Fix on the default branch?</th><td>Yes or no, with the evidence.</td></tr>
+        <tr id="st-pr"><th>Pull request</th><td>Link, state, and repository.</td></tr>
+        <tr id="st-q1"><th>Open question</th><td>A stale status, label, or link, with the evidence.</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section id="next">
+      <h2>Where to look next</h2>
+      <ul><li><code>path/to/file.ext</code>: what to read there.</li></ul>
+      <p class="note warn">Security tickets only: treat this content as internal information.</p>
+    </section>
+
+    <div class="pager">
+      <button type="button" id="prev">Previous</button>
+      <button type="button" id="next">Next</button>
+    </div>
+  </main>
+</div>
+
+<script>
+  // One section visible at a time, driven by the URL hash.
+  const sections = [...document.querySelectorAll("main section")];
+  const links = [...document.querySelectorAll("nav a")];
+  function show(id) {
+    const index = Math.max(0, sections.findIndex((s) => s.id === id));
+    sections.forEach((s, i) => s.classList.toggle("active", i === index));
+    links.forEach((a) => {
+      if (a.hash === "#" + sections[index].id) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+    document.getElementById("prev").disabled = index === 0;
+    document.getElementById("next").disabled = index === sections.length - 1;
+    window.scrollTo(0, 0);
+    return index;
+  }
+  let current = show(location.hash.slice(1));
+  window.addEventListener("hashchange", () => { current = show(location.hash.slice(1)); });
+  document.getElementById("prev").onclick = () => { location.hash = sections[current - 1].id; };
+  document.getElementById("next").onclick = () => { location.hash = sections[current + 1].id; };
+</script>
+
+<script type="module">
+  // Render each <script type="text/plain" class="code"> block with @pierre/diffs,
+  // per the lavish `code` playbook. The file name sets the language.
+  import { File } from "https://esm.sh/@pierre/diffs@1.2.10?bundle";
+  const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const options = {
+    theme: { light: "github-light", dark: "github-dark" },
+    themeType: dark ? "dark" : "light",
+    overflow: "wrap",
+  };
+  for (const block of document.querySelectorAll("script.code")) {
+    const container = document.createElement("div");
+    container.className = "code-view";
+    block.after(container);
+    const contents = block.textContent.replace(/^\n/, "");
+    new File(options).render({
+      containerWrapper: container,
+      file: { name: block.dataset.name, contents },
+    });
+  }
+</script>
+</body>
+</html>

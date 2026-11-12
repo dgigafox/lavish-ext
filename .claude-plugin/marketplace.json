@@ -10,7 +10,7 @@
     {
       "name": "lavish-ext",
       "source": "./",
-      "description": "Lavish extension: a step-by-step, plain-words walkthrough of how a PR was written, as a lavish page you can annotate."
+      "description": "Lavish extension: plain-words lavish pages you can annotate: a step-by-step walkthrough of how a PR was written, and an explainer of one Jira ticket for someone new to the company."
     }
   ]
 }

@@ -7,6 +7,7 @@ skill to turn agent work into HTML pages you can read and annotate.
 /lavish-ext:code-walkthrough              the current branch vs its base
 /lavish-ext:code-walkthrough 482          a PR number or URL
 /lavish-ext:code-walkthrough my-branch    a branch
+/lavish-ext:ticket-explainer JOBS-1603    a Jira key or URL
 ```
 
 ## Why it exists
@@ -20,6 +21,14 @@ problem in plain words, with an example, and the proposed solution), then
 **Step 1..N** (one logical chunk of code each: what changed, the code, why, and
 a short note on tests), then an optional **Gaps** page. You annotate anything
 unclear, and the agent rewrites that passage in place.
+
+Before the code exists, the same gap appears with a ticket. A ticket is written
+for the people who were there when it was made, and it does not say what
+changed since. `ticket-explainer` writes a page for someone new to the company:
+the terms first, then why the ticket exists, the problem, the fix, what "done"
+means, and where it stands today. It checks each claim against the current
+code and Jira, and it lists stale ticket state as open questions. It only
+reads; it never edits Jira or code.
 
 ## Install
 
@@ -37,16 +46,19 @@ copy without installing it.
 
 - **The `lavish` skill is required.** Install it with
   `npx skills add kunchenguid/lavish-axi`
-  ([source](https://github.com/kunchenguid/lavish-axi)). `code-walkthrough`
-  checks for it first (`scripts/require-lavish.sh`) and refuses to run without it.
+  ([source](https://github.com/kunchenguid/lavish-axi)). Every skill checks for
+  it first (`scripts/require-lavish.sh`) and refuses to run without it.
 - `lavish-axi`, run through `npx -y lavish-axi`; no global install is needed.
-- `gh` for PR input, and `git`.
+- `code-walkthrough`: `gh` for PR input, and `git`.
+- `ticket-explainer`: the Atlassian MCP signed in to your Jira site, or the
+  `acli` CLI as a fallback, and `git`.
 
 ## Skills
 
 | Skill              | What it does                                                         |
 | ------------------ | -------------------------------------------------------------------- |
 | `code-walkthrough` | Step-by-step, plain-words walkthrough of a PR, branch, or diff        |
+| `ticket-explainer` | Explains one Jira ticket to someone new to the company                |
 
-The page skeleton is in
-`skills/code-walkthrough/references/page-skeleton.html`.
+Each skill keeps its page skeleton in `skills/<skill>/references/page-skeleton.html`.
+The shared lavish gate is `scripts/require-lavish.sh`.

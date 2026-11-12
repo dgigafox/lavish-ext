@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Exit 0 only when the lavish skill is installed and lavish-axi runs.
-# code-walkthrough must not run otherwise.
+# The skills of this plugin must not run otherwise.
 set -u
 
 found=""
