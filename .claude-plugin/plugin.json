@@ -1,6 +1,6 @@
 {
   "name": "lavish-ext",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Lavish extension: skills that build on the lavish skill and lavish-axi to turn agent work into reviewable HTML pages. /lavish-ext:code-walkthrough explains how a PR or branch was written, step by step, in plain words. /lavish-ext:ticket-explainer explains one Jira ticket to someone new to the company.",
   "author": {
     "name": "Darren Gegantino"

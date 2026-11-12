@@ -89,8 +89,8 @@ COPIED CODE HERE
     </section>
 
     <div class="pager">
-      <button type="button" id="prev">Previous</button>
-      <button type="button" id="next">Next</button>
+      <button type="button" id="pager-prev">Previous</button>
+      <button type="button" id="pager-next">Next</button>
     </div>
   </main>
 </div>
@@ -106,15 +106,15 @@ COPIED CODE HERE
       if (a.hash === "#" + sections[index].id) a.setAttribute("aria-current", "page");
       else a.removeAttribute("aria-current");
     });
-    document.getElementById("prev").disabled = index === 0;
-    document.getElementById("next").disabled = index === sections.length - 1;
+    document.getElementById("pager-prev").disabled = index === 0;
+    document.getElementById("pager-next").disabled = index === sections.length - 1;
     window.scrollTo(0, 0);
     return index;
   }
   let current = show(location.hash.slice(1));
   window.addEventListener("hashchange", () => { current = show(location.hash.slice(1)); });
-  document.getElementById("prev").onclick = () => { location.hash = sections[current - 1].id; };
-  document.getElementById("next").onclick = () => { location.hash = sections[current + 1].id; };
+  document.getElementById("pager-prev").onclick = () => { location.hash = sections[current - 1].id; };
+  document.getElementById("pager-next").onclick = () => { location.hash = sections[current + 1].id; };
 </script>
 
 <script type="module">
